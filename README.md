@@ -1,4 +1,4 @@
-# OAK ESPRESSO｜デザインカンプ v1.0
+# OAK ESPRESSO｜サンプルLP v1.1
 
 2026-10-18｜制作：ミセミル Web｜用途：営業提案用サンプル（本番サイトではありません）
 
@@ -6,28 +6,45 @@
 
 - `index.html`：日本語/英語切替のあるレスポンシブデザインプレビュー
 - `styles.css`：レイアウト、配色、レスポンシブ、UIのスタイル
-- `script.js`：JA/EN切替（初期表示は日本語）、言語に応じた`lang`・タイトル・alt等の変更
-- `assets/*.webp`：提供された実画像からWeb表示用に変換した写真
+- `script.js`：JA/EN切替（初期表示は日本語）、言語属性等の更新、IntersectionObserverによる一度だけの入場演出（動き低減対応）
+- `images/*.webp`：提供された実画像からWeb表示用に変換した写真（配信URLは`/images/...`）
+- `images/favicon.svg`：既存のfavicon（`/images/favicon.svg`）
+- `ASSET_INVENTORY.md`：画像の配置・使用箇所・日英alt・クロップ・出典確認状況
+- `THIRD_PARTY_NOTICES.md`：使用したLucide公式SVGとライセンス
+- `MOTION_QA.md`：スクロール・ホバー演出の仕様、静止レイアウト維持・動き低減・ローカル版の検証結果
 - `screenshots/desktop_ja_full.jpg`：PC版の全ページデザインカンプ（日本語）
 - `screenshots/mobile_ja_full.jpg`：スマートフォン版の全ページデザインカンプ（日本語）
 - `screenshots/desktop_en_full.jpg`：PC版の全ページデザインカンプ（英語）
 - `screenshots/mobile_en_full.jpg`：スマートフォン版の全ページデザインカンプ（英語）
 - `DESIGN_HANDOFF.md`：写真割り当て、デザイン判断、次工程のToDo
 
+既存の`screenshots/`はv1.0時点の参考カンプです。
+
 ## 閲覧方法
 
-1. ZIPを解凍して `index.html` をブラウザで開く。
+1. リポジトリのルートで下記のローカルWebサーバーを起動する。
 2. 画面右上の `JA / EN` をクリックして言語を切り替える。
 3. 画面幅に応じてレイアウトが変化する。画面下部のボタンはモバイル版の地図CTA。
 
-ローカルサーバーで確認する場合：
+ローカルサーバー：
 
 ```bash
-cd oak_espresso_design_v1
-python -m http.server 8000
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 その後 `http://localhost:8000/` を開く。
+
+画像はルート相対パスのため、`file://`でのHTML直開きには対応しません。公開時もリポジトリルートを配信ルートにします。GitHub Pages等のサブパス配信には公開ルートの調整が必要です。
+
+## v1.1での変更
+
+- 静的HTML構成を維持し、既存のUI記号をLucide公式SVGに統一。サイズ18–20px、線幅2、`currentColor`、装飾SVGは`aria-hidden`・`focusable="false"`。
+- 非操作の写真バッジ・商品キャプションから意味を持たない矢印を削除。ブランド意匠と装飾文字は維持。
+- 写真・faviconの全12ファイルを`images/`へ移動。アンダースコアをハイフンに統一し、画像・preload・faviconを`/images/...`で参照。
+- アイコンを含むリンクと言語切替の44px操作領域、背景に応じた可視フォーカスを確保。
+- 写真の内容・コピー・セクション構成・配色・日英切替ロジックは維持。新たな実行時依存は追加していません。
+
+v1.1の検証結果・残確認事項は`QA_REPORT_v1.1.md`を参照してください。本構成にはビルド・Lint・テスト用のpackage.jsonはありません。
 
 ## 必ず確認すること
 

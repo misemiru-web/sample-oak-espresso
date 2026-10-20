@@ -18,17 +18,17 @@
 
 | No. | アセット名 | このデザインでの扱い |
 |---|---|---|
-| 01 | `opening.webp` | 開業告知ビジュアルとして保管。現行ヘッダーロゴには使わない |
-| 02 | `hero_latte.webp` | Heroの主写真 |
-| 03 | `coffee_cake.webp` | Coffee & Food：コーヒー写真 |
-| 04 | `packaging_studio.webp` | Roastery：販売パッケージのディテール・小写真 |
-| 05 | `packaging_cafe.webp` | Roastery：メイン写真。**実売品確認済み** |
-| 06 | `cheesecake.webp` | Coffee & Food：スイーツ |
-| 07 | `fruit_toasts.webp` | Coffee & Food：フード。常設提供と断定しない |
-| 08 | `coffee_books.webp` | Concept：カルチャーを連想させるコーヒーと雑誌 |
-| 09 | `interior_wide.webp` | Our Space：店内全景 |
-| 10 | `savory_dish.webp` | 予備。定常メニューの確認後に利用検討 |
-| 11 | `interior_details.webp` | Our Space：空間ディテール |
+| 01 | `/images/opening.webp` | 開業告知ビジュアルとして保管。現行ヘッダーロゴには使わない |
+| 02 | `/images/hero-latte.webp` | Heroの主写真 |
+| 03 | `/images/coffee-cake.webp` | Coffee & Food：コーヒー写真 |
+| 04 | `/images/packaging-studio.webp` | Roastery：販売パッケージのディテール・小写真 |
+| 05 | `/images/packaging-cafe.webp` | Roastery：メイン写真。**実売品確認済み** |
+| 06 | `/images/cheesecake.webp` | Coffee & Food：スイーツ |
+| 07 | `/images/fruit-toasts.webp` | Coffee & Food：フード。常設提供と断定しない |
+| 08 | `/images/coffee-books.webp` | Concept：カルチャーを連想させるコーヒーと雑誌 |
+| 09 | `/images/interior-wide.webp` | Our Space：店内全景 |
+| 10 | `/images/savory-dish.webp` | 予備。定常メニューの確認後に利用検討 |
+| 11 | `/images/interior-details.webp` | Our Space：空間ディテール |
 
 ## 3. 情報設計と写真比率
 
@@ -67,3 +67,10 @@
 4. 承認後、テキスト調整 → 実装のコンポーネント整理 → QA → 限定共有URLの準備へ進む。
 
 この文書はデザインの引渡しメモであり、要件定義書・デザイン定義書を一方的に置き換えるものではありません。
+
+## 7. 定義書v1.1対応（2026-10-20追記）
+
+- 上記のデザイン判断・未確認情報を維持し、Lucide公式SVGと`/images/...`のルート相対参照へ更新しました。
+- 画像台帳：`ASSET_INVENTORY.md`。元投稿URL・撮影者等の未提供情報は推測せず記載しています。
+- 変更と品質確認：`QA_REPORT_v1.1.md`。既存スクリーンショットはv1.0参考資料として残しています。
+- ローカルWebサーバーの起動方法は`README.md`を参照してください。HTML直開きには対応しません。
