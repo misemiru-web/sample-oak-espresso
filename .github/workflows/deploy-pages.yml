@@ -1,0 +1,83 @@
+name: Deploy OAK ESPRESSO to GitHub Pages
+
+# Publishing is deliberate: ordinary pushes never deploy the sample.
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          # Select GitHub Actions in Settings > Pages before the first run.
+          enablement: false
+
+      - name: Prepare public files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          import re
+          import shutil
+          from pathlib import Path
+
+          source = Path("local-preview")
+          site = Path(os.environ["RUNNER_TEMP"]) / "oak-espresso-pages"
+          pages = ("index.html", "styles.css", "script.js")
+          texts = {name: (source / name).read_text(encoding="utf-8") for name in pages}
+          images = set()
+          for text in texts.values():
+              if re.search(r"(?<![A-Za-z0-9_.:/-])/images/", text):
+                  raise ValueError("Preview images must be relative for project Pages")
+              images.update(re.findall(r"\./images/([a-z0-9-]+\.(?:webp|svg))", text))
+          if not images or "favicon.svg" not in images:
+              raise ValueError("Missing image references or favicon")
+
+          # A new, allowlisted staging directory: never upload the repository
+          # or local-preview/ wholesale, including their documentation.
+          site.mkdir(parents=True, exist_ok=False)
+          (site / "images").mkdir()
+          files = [(source / name, site / name) for name in pages]
+          files += [(source / "images" / name, site / "images" / name) for name in sorted(images)]
+          for original, destination in files:
+              if not original.is_file() or original.is_symlink():
+                  raise ValueError(f"Missing or non-regular asset: {original}")
+              shutil.copyfile(original, destination)
+
+          # Keep Lucide's required notice without publishing a Markdown file.
+          # Only the artifact gains comments; the source and UI stay unchanged.
+          notice = (source / "THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8")
+          with (site / "script.js").open("a", encoding="utf-8") as output:
+              output.write("\n" + "\n".join("// " + line for line in notice.splitlines()) + "\n")
+          print(f"Prepared {len(files)} public files in {site}")
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/oak-espresso-pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
