@@ -11,7 +11,10 @@
   --sans: 'Noto Sans CJK JP', 'Hiragino Kaku Gothic ProN', system-ui, sans-serif;
 }
 *,*::before,*::after {box-sizing:border-box}
-html {scroll-behavior:smooth;scroll-padding-top:105px}
+html {--header-clearance:105px;scroll-behavior:smooth}
+/* Keep anchor/body focus targets below the sticky header without scrolling
+   already-visible header controls into a root scroll-padding exclusion zone. */
+main[id],section[id],main a,footer a {scroll-margin-top:var(--header-clearance)}
 body {margin:0;color:var(--ink);background:var(--cream);font-family:var(--sans);font-size:16px;-webkit-font-smoothing:antialiased}
 body,button,a { -webkit-tap-highlight-color:transparent; }
 img {display:block;max-width:100%}
@@ -41,7 +44,7 @@ main p,main small {text-wrap:pretty;line-break:strict;word-break:normal}
 .desktop-nav a {transition:color .2s}
 .head-actions {display:flex;align-items:center;justify-content:flex-end;gap:23px}
 .lang-toggle {display:flex;align-items:center;gap:6px;white-space:nowrap}
-.lang-btn {border:0;background:none;color:#82786e;cursor:pointer;font-size:11px;font-weight:700;padding:11px 5px;line-height:1;border-radius:0;min-width:44px;min-height:44px}
+.lang-btn {border:0;background:none;color:#756b61;cursor:pointer;font-size:11px;font-weight:700;padding:11px 5px;line-height:1;border-radius:0;min-width:44px;min-height:44px}
 .lang-btn.active {color:var(--ink);box-shadow:inset 0 -2px var(--ink)}
 .lang-bar {font-weight:300;color:#bdb1a3}
 .head-location {white-space:nowrap;display:flex;gap:8px;align-items:center;min-height:44px}
@@ -66,14 +69,14 @@ main p,main small {text-wrap:pretty;line-break:strict;word-break:normal}
 .repeater .repeater-divider {font-family:var(--sans);font-size:14px;color:#a47855}
 .section-wrap {max-width:1600px;margin:0 auto;padding-left:clamp(30px,7vw,112px);padding-right:clamp(30px,7vw,112px)}
 .section-topline {display:flex;justify-content:space-between;align-items:center;border-top:1px solid #bfb4a5;padding-top:16px;font:700 11px/1.2 var(--sans);letter-spacing:.14em;color:#675e52}
-.section-topline span:last-child {font-size:10px;opacity:.7}
+.section-topline span:last-child {font-size:10px;opacity:.92}
 .concept {padding-top:129px;padding-bottom:142px}
 .concept-grid {display:grid;grid-template-columns:1fr .87fr;align-items:center;gap:clamp(45px,7vw,110px);padding-top:70px}
-.mini-label {color:#6b7766;letter-spacing:.18em}
+.mini-label {color:#64705f;letter-spacing:.18em}
 .asterisk {font-size:21px;line-height:1}
 .editorial-title {font-family:'Noto Serif CJK JP',serif;font-weight:400;font-size:clamp(37px,4vw,62px);line-height:1.6;letter-spacing:-.058em;margin:22px 0 26px}
 .body-copy {max-width:525px;font-size:16px;line-height:2.35;letter-spacing:.015em;color:#625c54}
-.concept-bottom-note {border-top:1px solid var(--line);margin-top:55px;padding-top:20px;display:flex;align-items:center;gap:12px;color:#6d806f;font:700 12px/1.5 var(--sans);letter-spacing:.1em}
+.concept-bottom-note {border-top:1px solid var(--line);margin-top:55px;padding-top:20px;display:flex;align-items:center;gap:12px;color:#607162;font:700 12px/1.5 var(--sans);letter-spacing:.1em}
 .line-cross {font-size:23px}
 .concept-media {max-width:540px;width:100%}
 .concept-photo-frame {height:590px;overflow:hidden;background:#c7bba9;}
@@ -94,10 +97,10 @@ main p,main small {text-wrap:pretty;line-break:strict;word-break:normal}
 .offer-card-2 img {object-position:center 57%}
 .offer-card-3 img {object-position:center center}
 .offer-card figcaption {border-bottom:1px solid #c4b8a6;display:grid;grid-template-columns:35px 1fr 16px;gap:7px;align-items:start;padding:18px 2px 19px}
-.item-number {font:11px var(--sans);color:#a28360}
+.item-number {font:11px var(--sans);color:#836745}
 .offer-card figcaption strong {font:500 19px/1.3 Georgia,serif;letter-spacing:.1em;display:block}
 .offer-card figcaption small {display:block;color:#766c61;font-size:12px;margin-top:10px;text-wrap:balance}
-.availability-note {display:flex;gap:9px;font-size:12px;color:#786f63;line-height:1.8;margin-top:36px}
+.availability-note {display:flex;gap:9px;font-size:12px;color:#756c60;line-height:1.8;margin-top:36px}
 .note-star {color:#b17f5a}
 .beans {display:grid;grid-template-columns:49% 51%;background:var(--forest);color:#f4f0e8;min-height:730px}
 .beans-photo {min-height:730px;overflow:hidden}
@@ -123,7 +126,7 @@ main p,main small {text-wrap:pretty;line-break:strict;word-break:normal}
 .space-detail img {aspect-ratio:3/4;object-position:center center}
 .space-photos figcaption {font:600 12px/1.5 var(--sans);letter-spacing:.14em;padding-top:12px;color:#696057}
 .space-after {border-top:1px solid var(--line);padding-top:20px;min-width:0}
-.space-after span {display:block;font:700 10px/1.6 var(--sans);letter-spacing:.14em;color:#687566}
+.space-after span {display:block;font:700 10px/1.6 var(--sans);letter-spacing:.14em;color:#626e60}
 .space-after p {font-size:16px;line-height:1.9;max-width:40ch;margin:14px 0 0;color:#61594f}
 html[data-locale="en"] .space-title-area .editorial-title {font-size:clamp(46px,4.5vw,64px);line-height:1.12}
 html[data-locale="en"] .space-after p {line-height:1.7}
@@ -133,7 +136,7 @@ html[data-locale="en"] .space-after p {line-height:1.7}
 .story-title h2 {font-family:'Noto Serif CJK JP',serif;font-size:clamp(38px,4.3vw,69px);font-weight:400;line-height:1.48;letter-spacing:-.055em;margin:35px 0 0}
 .star-large {font-size:32px;color:#9b8063}
 .story-details p {font-size:16px;color:#534d46;line-height:2.3;margin:23px 0 25px}
-.story-details small {display:block;font-size:12px;color:#746a5c;line-height:1.8}
+.story-details small {display:block;font-size:12px;color:#665d50;line-height:1.8}
 html[data-locale="ja"] .beans-copy > p,html[data-locale="ja"] .story-details > p {text-wrap:balance}
 .visit-section {padding-top:136px;padding-bottom:155px}
 .visit-grid {display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(60px,9vw,135px);padding-top:69px}
@@ -144,11 +147,11 @@ html[data-locale="ja"] .beans-copy > p,html[data-locale="ja"] .story-details > p
 .floor-label {font:700 11px/1.2 var(--sans);letter-spacing:.15em;color:#756b5f}
 .visit-floor > div:nth-child(2) {font:200 120px/.99 Georgia,serif;letter-spacing:-.07em;margin:10px 0 4px}
 .visit-floor > div:nth-child(2) span {font-size:47px;letter-spacing:-.04em;margin-left:10px}
-.floor-caption {font:700 11px/1.2 var(--sans);letter-spacing:.16em;color:#7d7468}
+.floor-caption {font:700 11px/1.2 var(--sans);letter-spacing:.16em;color:#786f63}
 .visit-detail {padding:24px 0;border-bottom:1px solid #d8cebf}
-.data-label {display:block;font:700 10px var(--sans);letter-spacing:.16em;color:#648064}
+.data-label {display:block;font:700 10px var(--sans);letter-spacing:.16em;color:#5c765c}
 .visit-detail p {font-size:15px;line-height:1.9;margin:11px 0 0}
-.visit-detail small {display:block;margin-top:6px;font-size:11px;color:#8c7c6f}
+.visit-detail small {display:block;margin-top:6px;font-size:11px;color:#7c6c60}
 .visits-last {border:0;padding-bottom:10px}
 .visit-links {padding-top:20px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
 .visit-links .btn-primary {flex:1;min-width:240px}
@@ -221,8 +224,15 @@ html[data-locale="en"] .hero-description,html[data-locale="en"] .body-copy {lett
   .visit-card {padding:23px}
   .footer-upper {padding-bottom:60px}
 }
+/* Keep complete Japanese phrases in the narrow two-column layout. */
+@media(min-width:701px) and (max-width:767px){
+  .concept-grid {grid-template-columns:1.15fr 1fr;gap:24px}
+  .story-inner {gap:24px}
+  html[data-locale="en"] .offer-intro > div {flex:1.2}
+}
 @media(max-width:700px){
-  html {scroll-padding-top:77px}
+  /* Reserve the fixed CTA (53px), bottom offset (11px) and focus clearance. */
+  html {--header-clearance:77px;scroll-padding-bottom:80px}
   .sample-label {height:26px;letter-spacing:.1em;font-size:9px}
   .site-header {top:0}
   .head-inner {height:67px;padding:0 20px}
@@ -335,11 +345,49 @@ html[data-locale="en"] .hero-description,html[data-locale="en"] .body-copy {lett
   html[data-locale="en"] .hero-title {font-size:38px}
   .visit-card {padding:20px}
 }
+/* Readable information text; brand lockups and the repeater keep their scale. */
+.hero-description {font-size:16px;line-height:1.9}
+.hero-footnote {font-size:12px;letter-spacing:.02em;line-height:1.6}
+.section-topline {font-size:12px;line-height:1.5;gap:16px}
+.section-topline > span:first-child {flex-shrink:0}
+.section-topline span:last-child {font-size:12px;max-width:55%;min-width:0;text-align:right}
+.mini-label,.concept-bottom-note,.item-number {font-size:12px}
+.media-caption {font-size:12px;line-height:1.5;letter-spacing:.12em}
+.offer-card figcaption small,.availability-note {font-size:12px;line-height:1.8}
+.beans-meta,.beans-small-title,.story-index {font-size:12px}
+.beans-copy > p {font-size:16px;line-height:2.1}
+.space-after > span,.space-photos figcaption {font-size:12px}
+.floor-label,.floor-caption,.data-label,.visit-detail small {font-size:12px;line-height:1.8}
+.visit-detail p {font-size:16px}
+.footer-lower > [data-ja] {font-size:12px;line-height:1.8}
+
+/* Expand hit areas without moving or enlarging the visible wordmarks. */
+.desktop-nav a {display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+.brand,.skip-link {min-height:44px}
+.skip-link {display:inline-flex;align-items:center}
+
+/* This redundant photo caption is decorative, with a small stable contrast backing. */
+.vertical-caption {mix-blend-mode:normal;background:rgb(36 57 45 / 85%);padding:7px 4px}
+@media(min-width:1600px){
+  .hero-image {object-position:center bottom}
+}
+@media(max-width:900px){
+  .body-copy {font-size:16px}
+  .space-after p {font-size:16px}
+}
+@media(max-width:700px){
+  .hero-description,.body-copy,.offer-caption,.beans-copy > p,
+  .space-after p,.story-details p,.visit-intro > p,.visit-detail p {font-size:16px;line-height:1.85}
+  html[data-locale="en"] .hero-description,html[data-locale="en"] .body-copy {line-height:1.75}
+  .hero-footnote {right:22px}
+  .story-details small {font-size:12px}
+}
+
 /* Pointer feedback is limited to devices that actually support hover. */
 .link-underline,.head-location,.footer-meta a,.footer-lower a,.lang-btn {transition:color .24s,border-color .24s}
 a .lucide {transition:transform .24s}
 @media(hover:hover) and (pointer:fine){
-  .desktop-nav a:hover {color:#6b8773}
+  .desktop-nav a:hover {color:#58705e}
   .btn-primary:hover {background:var(--forest)}
   .link-underline:hover,.head-location:hover,.lang-btn:hover {color:var(--green);border-color:var(--copper)}
   .site-footer a:hover {color:#fffdfa;border-color:#fffdfa}

@@ -71,3 +71,9 @@ v1.1の検証結果・残確認事項は`QA_REPORT_v1.1.md`を参照してくだ
 - 英語見出し：Georgia / serif
 - 主要CTA：Googleマップ検索 / 副CTA：公式Instagram
 - Instagram写真は実内容を保存し、色相や店舗内装を置き換える加工はしていない。最適化のためWebP変換のみ。
+
+## 第2段階の品質改善
+
+本文・重要な注記の可読性、レスポンシブ画像、Hero写真の縦キャプションと広幅クロップ、ナビ・ロゴの操作領域を改善しています。元画像は保持し、縮小WebPを`srcset/sizes`で選択します。Heroの先読みも同じ候補を使用します。詳細・測定条件・未検証事項は`STAGE2_QUALITY_QA.md`、画像候補は`ASSET_INVENTORY.md`を参照してください。
+
+ローカル確認版の更新方法は従来どおり`python3 scripts/create-local-preview.py`です。追加のライブラリは不要です。
